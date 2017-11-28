@@ -1,0 +1,62 @@
+
+db.getCollection('history_send').find({})
+{
+    "_id" : ObjectId("59afb7e4a4b169284cdf1f1c"),
+    "websitePushID" : "web.langgame.casual.mmo.slg",
+    "title" : "",
+    "body" : "",
+    "btnlabel" : "",
+    "path_redirect" : "",
+    "date_push" : "2017-09-06 08:55:00",
+    "domain" : {
+        "_id" : ObjectId("59a66093bd6c00c378f3dce0"),
+        "site" : "push.langgame.netasdf"
+    }
+}
+
+
+db.getCollection('pushtoken').find({})
+{
+    "_id" : ObjectId("59b64fe51c67603a40033021"),
+    "domainId" : "59a66093bd6c00c378f3dce0",
+    "title" : "",
+    "body" : "",
+    "button" : "",
+    "urlargs" : [ 
+        ""
+    ]
+}
+
+db.getCollection('site').find({})
+{
+    "_id" : ObjectId("59a66093bd6c00c378f3dce0"),
+    "site" : "push.langgame.netasdf",
+    "title" : "Push notification",
+    "body" : "Push notification body",
+    "webpushid" : "web.langgame.casual.mmo.slg",
+    "btnlabel" : "Button label",
+    "path_redirect" : "https://push.langgame.net/123456789whatdoyouwant"
+}
+{
+    "_id" : ObjectId("59a78759bd6c00c378f42ec6"),
+    "site" : "push.langgame.net 22222",
+    "title" : "Push notification 222222",
+    "body" : "Push notification body 222222",
+    "webpushid" : "web.langgame.casual.mmo.slg",
+    "btnlabel" : "Button label",
+    "path_redirect" : "https://push.langgame.net/123456789whatdoyouwant"
+}
+
+
+
+db.getCollection('token').find({})
+{
+    "_id" : ObjectId("59a7aee4bd6c00c378f43e16"),
+    "deviceToken" : "7840A506CF2888C9066E422A77409273D8EC99CBB32247A68ED7AB964149D7A0",
+    "websitePushID" : "web.langgame.casual.mmo.slg",
+    "platform" : "safari",
+    "domain" : {
+        "_id" : ObjectId("59a7941f6a15ab6f242000d4"),
+        "site" : "push.langgame.net"
+    }
+}
