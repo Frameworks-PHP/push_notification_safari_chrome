@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Safari Push Notification Demo</title>
+
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background: #EDEDED;
+                font-family: "Avenir Next", "Helvetica Neue", Helvetica, sans-serif;
+            }
+
+            .box {
+                border-radius: 8px;
+                background: #fff;
+                width: 600px;
+                height: 300px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -300px;
+                margin-top: -150px;
+                border: 1px solid #CECECE;
+                box-shadow: rgba(255,255,255,0.7) 0 1px 0, inset rgba(0,0,0,0.1) 0 1px 2px;
+            }
+        </style>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+ 
+        <script type="text/javascript">
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            function randomIntFromInterval(min, max)
+            {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+            var token = "";
+            var _pushId = "web.langgame.casual.mmo.slg";
+            window.onload = function () {
+                token = getCookie("token");
+                //alert(window.navigator.userAgent);
+                //if (token != "" && window.navigator.userAgent.indexOf('10.1 Safari') > -1) {
+                checkPerms();
+                /*} else {
+                 document.getElementById("old").style.display = "";
+                 if (window.navigator.userAgent.indexOf("Firefox") > -1) {
+                 document.getElementById("firefoxlol").style.display = "";
+                 }
+                 }  */
+                if (token != "") {
+                    document.getElementById("token").textContent = token;
+                }
+            };
+
+            function checkPerms() {
+                document.getElementById("reqperm").style.display = "none";
+                document.getElementById("granted").style.display = "none";
+                document.getElementById("denied").style.display = "none";
+
+                var pResult = window.safari.pushNotification.permission(_pushId);
+                console.log(pResult);
+                if (pResult.permission === 'default') {
+                    //request permission
+                    document.getElementById("reqperm").style.display = "";
+                    requestPermissions();
+                } else if (pResult.permission === 'granted') {
+                    document.getElementById("granted").style.display = "";
+                    token = pResult.deviceToken;
+                } else if (pResult.permission === 'denied') {
+                    document.getElementById("denied").style.display = "";
+                }
+            }
+
+            function requestPermissions() {
+                window.safari.pushNotification.requestPermission('https://push.langgame.net', _pushId, {"token": token}, function (c) {
+                    console.log(c);
+                    if (c.permission === 'granted') {
+                        document.getElementById("reqperm").style.display = "none";
+                        document.getElementById("granted").style.display = "";
+                        token = c.deviceToken;
+                        setCookie("token", token, 360);
+                    } else if (c.permission === 'denied') {
+                        document.getElementById("reqperm").style.display = "none";
+                        document.getElementById("denied").style.display = "";
+                    }
+                });
+            }
+
+            function do_push() {
+                var checksOut = true;
+                $("#form input").each(function (index, element) {
+                    $(this).parents(".control-group").removeClass("error");
+                    if (element.value == "") {
+                        $(this).parents(".control-group").addClass("error");
+                        checksOut = false;
+                    }
+                });
+                if (checksOut == true) {
+                    $.post("https://push.langgame.net/v1/push/" + _pushId + "/" + token, {"title": document.getElementById("not_title").value, "body": document.getElementById("not_body").value, "button": document.getElementById("not_button").value, "urlargs": document.getElementById("not_url").value});
+                    $("#form input").val("");
+                    $("#modal_scrim").fadeOut(300);
+                }
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div style="background: rgba(0,0,0,0.8); position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: none; z-index: 899;" id="modal_scrim">
+            <div class="modal">
+                <div class="modal-header">
+                    <button type="button" class="close" onClick="$('#modal_scrim').fadeOut(300);" aria-hidden="true">&times;</button>
+                    <h3>Create Push Notification</h3>
+                </div>
+                <div class="modal-body form-horizontal" id="form">
+                    <div class="control-group">
+                        <label class="control-label" for="not_title">Title</label>
+                        <div class="controls">
+                            <input type="text" id="not_title">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="not_title">Body</label>
+                        <div class="controls">
+                            <input type="text" id="not_body">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="not_title">Button Label</label>
+                        <div class="controls">
+                            <input type="text" id="not_button">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="not_url">Path Redirect</label>
+                        <div class="controls">
+                            <input type="text" id="not_url">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn btn-primary btn-small" onClick="do_push();">Push!</div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div style="font-weight: 500; font-size: 20px; margin: 10px;">Safari Push Notification Demo</div>
+            <!-- old safari lolz -->
+            <div style="margin-top: 100px; text-align: center; display: none;" id="old">
+                You need Safari 7.0 on OS X Mavericks to run this demo!
+                <div id="firefoxlol" style="display: none; font-size: 11px; margin-top: 20px;">u serious with firefox right now tho? maybe don't.</div>
+            </div>
+            <!-- checking permissions -->
+            <div style="margin-top: 100px; text-align: center; display: none;" id="reqperm">
+                <img src="https://push.langgame.net/loader.gif">
+                <div>Requesting permission...</div>
+            </div>
+            <!-- denied permissions -->
+            <div style="margin-top: 100px; text-align: center; display: none;" id="denied">
+                <div>You have denied this website permission to send push notifications.</div>
+                <div class="btn btn-primary btn-small" onClick="checkPerms();">I've changed my mind...</div>
+            </div>
+            <!-- granted permissions -->
+            <div style="margin-top: 20px; text-align: center; display: none;" id="granted">
+                <div class="btn btn-primary" onClick="$('#modal_scrim').fadeIn(300);
+                        document.getElementById('not_title').focus();">Create New Push Notification</div>
+                <hr>
+                <div style="position: absolute; margin-top: -30px; text-align: center; width: 100%; color: #CCC;">OR</div>
+                <div style="overflow: auto;"> 
+                    <div style="border-radius: 8px; box-shadow: inset rgba(0,0,0,0.3) 0 1px 2px; border: 1px solid #A0A0A0; font-size: 12px; padding: 10px; margin: 20px; margin-top: 15px; margin-left: 10px;margin-right: 10px; text-align: center;">Device Token: <span id="token"></span></div>                    
+                </div>
+                <div>                    
+                    <div style="font-size: 11px;">(You can close safari now if you want.)</div>
+                </div>
+            </div>
+        </div>        
+    </body>
+</html>

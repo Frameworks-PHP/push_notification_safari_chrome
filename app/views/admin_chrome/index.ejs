@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <% include ../partials/header %>
+
+        <div class="page-content">
+            <div class="row">
+                <% include ../partials/navigation %>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-large">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Push Notification</div>
+                                </div>
+                                <div class="panel-body">
+                                    <form action="" id="formPushNotification">
+                                        <fieldset class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Select Domain</label>
+                                                <select class="form-control" id="list-domain-send-noti" name="domain">
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Notification title</label>
+                                                <input type="text" name="title" class="form-control" id="notification-title" placeholder="Insert here a title">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Notification icon</label>
+                                                <input type="text" name="icon" class="form-control" id="notification-icon" placeholder="https://mu.gate.vn/assets/templates/muvietnam.mobo.vn/master/uyRLnB/assets/images/age-limit.png">
+<!--                                                <input type="file" name="file" id="fileuploadicon">
+                                                <input type="button" value="Send Invoices" id="btnuploadicon"/>
+                                                <input type="hidden" name="uploaddone" id="uploaddone" value="0">-->
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Notification Image</label>
+                                                <input type="text" name="image" class="form-control" id="notification-image" placeholder="https://mu.gate.vn/assets/templates/muvietnam.mobo.vn/pages/nbEZOU/assets/images/page2-c2.png">
+<!--                                                <input type="file" name="file" id="fileuploadicon">
+                                                <input type="button" value="Send Invoices" id="btnuploadimage"/>
+                                                <input type="hidden" name="uploaddoneimage" id="uploaddoneimage" value="0">-->
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Notification body</label>
+                                                <input type="text" name="body" class="form-control" id="notification-body" placeholder="Insert here a body">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Notification URL</label>
+                                                <input type="text" name="url" class="form-control" id="notification-url" placeholder="Insert here an URL">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Notification delay</label>
+                                                <input type="number" name="delay" class="form-control" id="notification-delay" value="5">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Time To Live</label>
+                                                <input type="number" name="ttl" class="form-control" id="notification-ttl" value="0">
+                                            </div>
+                                        </fieldset>
+                                        <div>
+                                            <div class="btn btn-primary" id="pushNotification">
+                                                <i class="fa fa-save"></i>
+                                                Submit
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--  Page content -->
+                </div>
+            </div>
+        </div>
+
+        <% include ../partials/footer %>
+
+
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="/assets/vendors/form-helpers/js/bootstrap-formhelpers.min.js"></script>
+
+        <script src="/assets/vendors/select/bootstrap-select.min.js"></script>
+
+        <script src="/assets/vendors/tags/js/bootstrap-tags.min.js"></script>
+
+        <script src="/assets/vendors/mask/jquery.maskedinput.min.js"></script>
+
+        <script src="/assets/vendors/moment/moment.min.js"></script>
+
+        <script src="/assets/vendors/wizard/jquery.bootstrap.wizard.min.js"></script>
+        <script src="/admin_tool/js/toolPushNotificationChrome.js"></script>
+
+        <!-- bootstrap-datetimepicker -->
+        <link href="/assets/vendors/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
+        <script src="/assets/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script> 
+
+
+        <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
+        <script src="/assets/js/custom.js"></script>
+        <script src="/assets/js/forms.js"></script>
+    </body>
+</html>

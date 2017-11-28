@@ -1,0 +1,28 @@
+<footer>
+    <div class="container">
+
+        <div class="copy text-center">
+            Copyright 2017 <a href='#'>MeCorp</a>
+        </div>
+
+    </div>
+</footer>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- jQuery UI -->
+<!--<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<script>
+//    $('.nav li').click(function (e) {
+//        var $this = $(this);
+//        $(this).addClass('current').siblings().removeClass('current');
+//        e.preventDefault();
+//    });
+
+    $(".nav li a").filter(function () {
+        return this.href == location.href.replace(/#.*/, "");
+    }).parent().addClass("current").siblings().removeClass('current');
+</script>

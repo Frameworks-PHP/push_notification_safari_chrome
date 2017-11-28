@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <% include ../partials/header %>
+
+        <div class="page-content">
+            <div class="row">
+                <% include ../partials/navigation %>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-large">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Push Notification</div>
+                                </div>
+                                <div class="panel-body">
+                                    <form action="" id="formSaveDomain">
+                                        <fieldset class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Domain</label>
+                                                <input type="text" name="domain" class="form-control" id="notification-domain">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Web Push ID (safari)</label>
+                                                <input type="text" name="webpushid" class="form-control" id="list-webpushid-send-noti">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Website Name</label>
+                                                <input type="text" name="websiteName" class="form-control" id="websiteName">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Allowed Domains (separated by commas ',')</label>
+                                                <input type="text" name="allowedDomains" class="form-control" id="allowedDomains" placeholder="'http://example.com','https://example.com'">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Web Service URL</label>
+                                                <input type="text" name="webServiceURL" class="form-control" id="webServiceURL" placeholder="https://example.com">
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>certP12 file</label>
+                                                <input type="file" name="file" id="fileuploadcertP12">
+                                                <input type="button" value="Send certP12" id="btnuploadcertP12"/>
+                                                <input type="hidden" name="uploaddonecertP12" id="uploaddonecertP12" value="0">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>certPush file</label>
+                                                <input type="file" name="file" id="fileuploadcertPush">
+                                                <input type="button" value="Send certPush" id="btnuploadcertPush"/>
+                                                <input type="hidden" name="uploaddonecertPush" id="uploaddonecertPush" value="0">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Notification icon</label>
+                                                <input type="file" name="file" id="fileuploadicon">
+                                                <input type="button" value="Send Invoices" id="btnuploadicon"/>
+                                                <input type="hidden" name="uploaddone" id="uploaddone" value="0">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>cert Password</label>
+                                                <input type="text" name="certPasswd" class="form-control" id="certPasswd">
+                                            </div>
+                                        </fieldset>
+                                        <div>
+                                            <div class="btn btn-primary" id="saveDomainNotification">
+                                                <i class="fa fa-save"></i>
+                                                Save 
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--  Page content -->
+                </div>
+            </div>
+        </div>
+
+        <% include ../partials/footer %>
+
+
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="/assets/vendors/form-helpers/js/bootstrap-formhelpers.min.js"></script>
+
+        <script src="/assets/vendors/select/bootstrap-select.min.js"></script>
+
+        <script src="/assets/vendors/tags/js/bootstrap-tags.min.js"></script>
+
+        <script src="/assets/vendors/mask/jquery.maskedinput.min.js"></script>
+
+        <script src="/assets/vendors/moment/moment.min.js"></script>
+
+        <script src="/assets/vendors/wizard/jquery.bootstrap.wizard.min.js"></script>
+        <script src="/admin_tool/js/toolEditNotificationSite.js"></script>
+
+        <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
+        <script src="/assets/js/custom.js"></script>
+        <script src="/assets/js/forms.js"></script>
+    </body>
+</html>
